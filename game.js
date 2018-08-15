@@ -59,6 +59,7 @@ clearTimeout(id);
         this.resizeTimerId_ = null;
         this.playCount = 0;
         this.audioBuffer = null;
+        this.soundFx = {};
         this.audioContext = null;
         this.images = {};
         this.imagesLoaded = 0;
@@ -174,6 +175,11 @@ clearTimeout(id);
                 y: 2
             }
         }
+    };
+    Runner.sounds = {
+        BUTTON_PRESS: 'offline-sound-press',
+        HIT: 'offline-sound-hit',
+        SCORE: 'offline-sound-reached'
     };
     Runner.keycodes = {
         JUMP: {
@@ -375,6 +381,10 @@ clearTimeout(id);
                 } else {
                     this.gameOver()
                 }
+                var playAcheivementSound = this.distanceMeter.update(deltaTime, Math.ceil(this.distanceRan));
+                // if (playAcheivementSound) {
+                //     this.playSound(this.soundFx.SCORE)
+                // }
             }
             if (!this.crashed) {
                 this.tRex.update(deltaTime);
@@ -512,6 +522,35 @@ clearTimeout(id);
                 this.gameOverPanel = new GameOverPanel(this.canvas, this.spriteDef.TEXT_SPRITE, this.spriteDef.RESTART, this.dimensions)
             } else {
                 this.gameOverPanel.draw()
+            }
+            if (this.distanceRan > this.highestScore) {
+                this.highestScore = Math.ceil(this.distanceRan);
+                this.distanceMeter.setHighScore(this.highestScore);
+                currentScore = Math.round(this.highestScore * 0.025);
+                var score_d = 0;
+                if (document.getElementById("score-5") !== null) {
+                    score_d = document.getElementById("score-5").innerHTML
+                }
+                // if (currentScore > score_d) {
+                //     var xhr = new XMLHttpRequest();
+                //     xhr.open('GET', '/inc/check.php?score=' + currentScore, false);
+                //     xhr.send();
+                //     if (xhr.status != 200) {} else {
+                //         if (xhr.responseText != '') {
+                //             if (user_name == '') {
+                //                 user_name = prompt(xhr.responseText, 'Anonym');
+                //                 if (user_name == 'null' || user_name == '') {
+                //                     user_name = 'Anonym'
+                //                 }
+                //             } else {
+                //                 alert(xhr.responseText)
+                //             }
+                //             xhr.open('GET', '/inc/set.php?name=' + user_name + '&score=' + currentScore, false);
+                //             xhr.send();
+                //             location.reload()
+                //         }
+                //     }
+                // }
             }
             this.time = getTimeStamp()
         },
@@ -1136,6 +1175,7 @@ clearTimeout(id);
         },
         update: function(deltaTime, distance) {
             var paint = true;
+            var playSound = false;
             if (!this.acheivement) {
                 distance = this.getActualDistance(distance);
                 if (distance > this.maxScore && this.maxScoreUnits == this.config.MAX_DISTANCE_UNITS) {
@@ -1148,6 +1188,7 @@ clearTimeout(id);
                     if (distance % this.config.ACHIEVEMENT_DISTANCE == 0) {
                         this.acheivement = true;
                         this.flashTimer = 0;
+                        playSound = true
                     }
                     var distanceStr = (this.defaultString + distance).substr(-this.maxScoreUnits);
                     this.digits = distanceStr.split('')
@@ -1175,6 +1216,7 @@ clearTimeout(id);
                 }
             }
             this.drawHighScore();
+            return playSound
         },
         drawHighScore: function() {
             this.canvasCtx.save();
