@@ -5,15 +5,6 @@
 	<meta http-equiv="Cache-control" content="public">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
 	<title>T-Rex Chrome Offline Game — Dino Runner Online</title>
-	<meta name="description"  content="This replica can be played on Chrome, FireFox, Safari and mobile devices.<br />
-Press Space to start the game and jump your Dino, use down arrow (↓) to duck." />
-	<meta property="og:title" content="Chrome dino game">
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="https://chromedino.com">
-    <meta property="og:image" content="/img/chrome_dino_runner.png">
-    <meta property="og:site_name" content="Chrome_Dino">
-    <meta property="og:description" content="Chrome t-rex dinosaur game online with scores (records)">
-
 	<style>
 	/* Copyright 2013 The Chromium Authors. All rights reserved. * Use of this source code is governed by a BSD-style license that can be * found in the LICENSE file. */html,body{ padding: 0; margin: 0; width: 100%; height: 100%;}.hidden { display: none;}/* Offline page */.offline .interstitial-wrapper { color: #2b2b2b; font-size: 1em; line-height: 1.55; margin: 0 auto; max-width: 600px; padding-top: 100px; width: 100%;}.offline .runner-container { height: 150px; max-width: 600px; overflow: hidden; position: absolute; top: 35px; width: 44px;}.offline .runner-canvas { height: 150px; max-width: 600px; opacity: 1; overflow: hidden; position: absolute; top: 0; z-index: 2;}.offline .controller { background: rgba(247,247,247, .1); height: 100vh; left: 0; position: absolute; top: 0; width: 100vw; z-index: 1;}#offline-resources { display: none;}/**** Custom Beginning ***/body { font-family: Open Sans;}a { color: #000;} .interstitial-wrapper { color: #fff;}#main-content { margin: 0; padding: 0 20px;}#main-content h1 { margin: 0 0 20px; font-size: 20px; text-align: center; font-weight: normal;}#main-content h2 { display: none;}#main-content p { margin: 0 0 10px; font-size: 15px; text-align: center;}/*.ya-share2 { margin: 0 auto 48px; text-align: center;}*/ .interstitial-wrapper { margin-bottom: 90px; padding-top: 48px;}.offline .runner-container,.offline .runner-canvas { position: relative;}@media (max-width: 420px) { .suggested-left > #control-buttons, .suggested-right > #control-buttons { float: none; } .snackbar { left: 0; bottom: 0; width: 100%; border-radius: 0; }}@media (max-height: 350px) { h1 { margin: 0 0 15px; } .interstitial-wrapper { margin-top: 5%; } .nav-wrapper { margin-top: 30px; }}@media (min-width: 600px) and (max-width: 736px) and (orientation: landscape) { .offline .interstitial-wrapper { margin-left: 0; margin-right: 0; }}@media (min-width: 420px) and (max-width: 736px) and (min-height: 240px) and (max-height: 420px) and (orientation:landscape) { .interstitial-wrapper { margin-bottom: 100px; }}@media (min-height: 240px) and (orientation: landscape) { .offline .interstitial-wrapper { margin-bottom: 90px; }}@media (max-height: 320px) and (orientation: landscape) { .offline .runner-container { top: 10px; }}@media (max-width: 240px) { button { padding-left: 12px; padding-right: 12px; } .interstitial-wrapper { overflow: inherit; padding: 0 8px; }}@media (max-width: 120px) { button { width: auto; }}	</style>
 	<script>
@@ -30,13 +21,12 @@ setTimeout(function(){top.location=document.location;}, 30000)
 <body id="t" class="offline main-page">
 	<header id="main-frame-error" class="interstitial-wrapper __wrapper">
 		<div id="main-content">
-			<h1>T-Rex Chrome Offline Game — Dino Runner Online</h1>
 		</div>
 	</header>
 <section id="offline-resources">
-	<img id="offline-resources-1x" src="/assets/offline-sprite-1x.png" alt="Dino Chrome Online Game Sprite 1">
-	<img id="offline-resources-2x" src="/assets/offline-sprite-2x.png" alt="Dino Chrome Online Game Sprite 2">
+	<img id="offline-resources-1x" src="assets/offline-sprite-1x.png" alt="Dino Chrome Online Game Sprite 1">
+	<img id="offline-resources-2x" src="assets/offline-sprite-2x.png" alt="Dino Chrome Online Game Sprite 2">
 </section>
-	<script src="/js_1/game?ver=1.js"></script>
+	<script src="game.js"></script>
 </body>
 </html>
